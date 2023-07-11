@@ -45,3 +45,21 @@ jobs:
 
       - name: Execute tests
         run: vendor/bin/phpunit
+        
+      - name : run laravel
+        run : php artisan serve
+        
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.7.0
+        with:
+          # Set always-auth in npmrc.
+          always-auth: true
+          # Version Spec of the version to use. Examples: 12.x, 10.15.1, >=10.15.0.
+          node-version: 18.16.1
+          
+      - name: npm install, build and test
+        run: |
+          npm install
+          npm run build
+          npm test
+        
